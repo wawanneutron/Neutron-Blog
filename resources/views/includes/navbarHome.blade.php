@@ -26,21 +26,48 @@
         <a href="{{ route('blog') }}" class="nav-link page-scroll">Blog</a>
         </li>
       </ul>
-      <!-- mobile ButtonLogin -->
+      
+      {{-- auth user --}}
+      @guest
+          <!-- mobile ButtonLogin -->
       <form action="#" class="form-inline d-sm-block d-lg-none">
+        @csrf
         <div class="container col-10">
-          <button class="btn btn-block btn-login-mobile my-2 my-sm-0">
+        <button class="btn btn-block btn-login-mobile my-2 my-sm-0" type="button" onclick="event.preventDefault(); location.href='{{ url('login') }}';">
             Login
           </button>
         </div>
       </form>
       <!-- desktop ButtonLogin -->
       <form action="#" class="form-inline my-2 my-lg-0 d-none d-lg-block">
-        <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4">
+        @csrf
+      <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4" type="button" onclick="event.preventDefault(); location.href='{{ url('login') }}';">
           Login
         </button>
       </form>
       <!-- end navbar -->
+      @endguest
+
+      @auth
+          <!-- mobile ButtonLogin -->
+    <form action="{{ url('logout') }}" class="form-inline d-sm-block d-lg-none"  method="POST">
+        @csrf
+        <div class="container col-10">
+        <button class="btn btn-block btn-login-mobile my-2 my-sm-0" type="submit">
+            Logout
+          </button>
+        </div>
+      </form>
+      <!-- desktop ButtonLogin -->
+      <form action="{{ url('logout') }}" class="form-inline my-2 my-lg-0 d-none d-lg-block"  method="POST">
+        @csrf
+      <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4" type="submit">
+          Logout
+        </button>
+      </form>
+      <!-- end navbar -->
+      @endauth
+
     </div>
   </div>
 </div>

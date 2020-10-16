@@ -16,7 +16,7 @@
   
   @yield('content')
 
-  @include('includes.footer')
+
 
   @include('includes.script')
  
