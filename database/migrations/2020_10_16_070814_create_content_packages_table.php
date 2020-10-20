@@ -22,7 +22,7 @@ class CreateContentPackagesTable extends Migration
             $table->string('category');
             $table->string('slug');
             $table->longText('content');
-            $table->string('about_writer');
+            $table->longText('about_writer');
             $table->softDeletes();
             $table->timestamps();
         });

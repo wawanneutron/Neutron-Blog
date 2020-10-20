@@ -2,14 +2,10 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
-        <div class="sidebar-brand-text mx-3">
-            Neutron Admin </div>  
-                
-      </a>
-      
-
-
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
+      <div class="sidebar-brand-text mx-3"> Neutron Admin </div>             
+    </a>
+     
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -20,7 +16,7 @@
       
       {{-- Dashboard --}}
       <li class="nav-item">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
       </li>
@@ -31,14 +27,14 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Travel
+        Content Management
       </div>
       
       {{-- paket travel --}}
       <li class="nav-item">
-          <a class="nav-link" href="">
+      <a class="nav-link" href="{{ route('content-package.index') }}">
             <i class="fas fa-fw fa-luggage-cart"></i>
-            <span>Paket Travel</span></a>
+            <span>Content</span></a>
       </li>
                
               
@@ -47,33 +43,33 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Galeri
+        Galery Management
       </div>
       
       {{-- galeri travel --}}
       <li class="nav-item">
-      <a class="nav-link" href="">
+      <a class="nav-link" href="{{ route('gallery.index') }}">
             <i class="fas fa-fw fa-images"></i>
-            <span>Galeri Travel</span></a>
+            <span>Galery Content</span></a>
       </li>
 
        <!-- Divider -->
        <hr class="sidebar-divider">
 
        <!-- Heading -->
-       <div class="sidebar-heading">
+       {{-- <div class="sidebar-heading">
          Transaksi
-       </div>
+       </div> --}}
        
        {{-- Transaksi --}}
-       <li class="nav-item">
+       {{-- <li class="nav-item">
            <a class="nav-link" href="">
              <i class="fas fa-fw fa-dollar-sign"></i>
              <span>Transaksi</span></a>
-       </li>
+       </li> --}}
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      {{-- <hr class="sidebar-divider"> --}}
 
 
       <!-- Sidebar Toggler (Sidebar) -->

@@ -22,22 +22,47 @@
         <li class="nav-item mx-md-1">
           <a href="blog.html" class="nav-link active page-scroll">Blog</a>
         </li>
-      </ul>
-      <!-- mobile ButtonLogin -->
-      <form action="#" class="form-inline d-sm-block d-lg-none">
-        <div class="container col-10">
-          <button class="btn btn-block btn-login-mobile my-2 my-sm-0">
-            Login
-          </button>
-        </div>
-      </form>
-      <!-- desktop ButtonLogin -->
-      <form action="#" class="form-inline my-2 my-lg-0 d-none d-lg-block">
-        <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4">
-          Login
-        </button>
-      </form>
-      <!-- end navbar -->
+          </ul>
+         {{-- auth user --}}
+      @guest
+         <!-- mobile ButtonLogin -->
+         <form action="#" class="form-inline d-sm-block d-lg-none">
+           @csrf
+           <div class="container col-10">
+           <button class="btn btn-block btn-login-mobile my-2 my-sm-0" type="button" onclick="event.preventDefault(); location.href='{{ url('login') }}';">
+               Login
+             </button>
+           </div>
+         </form>
+         <!-- desktop ButtonLogin -->
+         <form action="#" class="form-inline my-2 my-lg-0 d-none d-lg-block">
+           @csrf
+         <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4" type="button" onclick="event.preventDefault(); location.href='{{ url('login') }}';">
+             Login
+           </button>
+         </form>
+         <!-- end navbar -->
+      @endguest
+
+      @auth
+         <!-- mobile ButtonLogin -->
+        <form action="{{ url('logout') }}" class="form-inline d-sm-block d-lg-none"  method="POST">
+           @csrf
+           <div class="container col-10">
+           <button class="btn btn-block btn-login-mobile my-2 my-sm-0" type="submit">
+               Logout
+             </button>
+           </div>
+         </form>
+         <!-- desktop ButtonLogin -->
+         <form action="{{ url('logout') }}" class="form-inline my-2 my-lg-0 d-none d-lg-block"  method="POST">
+           @csrf
+         <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4" type="submit">
+             Logout
+           </button>
+         </form>
+         <!-- end navbar -->
+      @endauth
     </div>
   </div>
 </div>
