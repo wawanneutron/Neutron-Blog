@@ -23,7 +23,7 @@ Route::get('/blog', 'BlogController@index')
     ->name('blog');
 
 // Artikel Wan nanti tambahin slug nya ya :) 
-Route::get('/artikel', 'ArtikelController@index')
+Route::get('/artikel/{slug}', 'ArtikelController@index')
     ->name('artikel');
 
 // Admin
@@ -35,6 +35,23 @@ Route::prefix('admin')
             ->name('dashboard');
         Route::resource('content-package', 'ContentPackageController');
         Route::resource('gallery', 'GalleryController');
+        Route::resource('account-setting', 'AccountController');
+        Route::patch('account-setting', 'AccountController@update')
+            ->name('account-setting');
+    });
+
+
+
+// User-profile
+Route::prefix('user-profile')
+    ->namespace('User')
+    ->middleware(['auth', 'user'])
+    ->group(function () {
+        Route::get('/', 'DataUserController@index')
+            ->name('profile');
+        Route::resource('edit-account', 'AcountUserController');
+        Route::patch('edit-account', 'AcountUserController@update')
+            ->name('account.update');
     });
 
 Auth::routes(['verify' => true]);

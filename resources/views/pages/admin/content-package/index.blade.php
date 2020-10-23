@@ -55,6 +55,7 @@
                       </div>
                       <div class="modal-body">
                         Do you wont to delete this content ?
+                        
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

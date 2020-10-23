@@ -27,8 +27,7 @@
           <tbody>
             @forelse ($items as $item)
             <tr>
-              <th class="align-middle"> {{ $item->id }} </th>
-              <td class="align-middle"> {{ $item->content_package->title }}  </td>
+              <td class="align-middle"> {{ ($item->content_package->title) }}  </td>
               <td class="align-middle"> 
               <img src="{{ Storage::url($item->image) }}" alt="" class="" width="160px">  
               </td>
@@ -36,37 +35,37 @@
                 <a href="{{ route ('gallery.edit', $item->id) }}" class="btn btn-info m-2">
                   <i class="fa fa-pencil-alt"></i>
                 </a>
+                <form action="{{ route ('gallery.destroy', $item->id) }}" class="d-inline m-2" method="POST">
+                  @csrf
+                  @method('delete')
+                  <button class="btn btn-danger"> Delete
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </form>
+                   <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-trash"></i>
+                  </button>
 
-               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-trash"></i>
-              </button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Gallery Content</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Gallery Content</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Do you wont to delete this image ?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          
+                        </div>
+                      </div>
                     </div>
-                    <div class="modal-body">
-                      Do you wont to delete this image ?
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <form action="{{ route ('gallery.destroy', $item->id) }}" class="d-inline m-2" method="POST">
-                        @csrf
-                        @method('delete')
-                        <button class="btn btn-danger"> Delete
-                          <i class="fas fa-trash"></i>
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>  
+                  </div>  
               </td>
             </tr>
             @empty

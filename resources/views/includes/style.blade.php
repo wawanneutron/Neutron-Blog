@@ -6,6 +6,7 @@
 <link
   href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
   rel="stylesheet">
+  
 
 <link rel="icon" type="png" href="{{ url('/frontend/images/vue.png') }}">
 <link rel="stylesheet" href="{{ url('/frontend/styles/main.css') }}">

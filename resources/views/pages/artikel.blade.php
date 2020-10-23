@@ -20,15 +20,15 @@
     <div class="container">
       <div class="row justify-content-center text-center">
         <div class="col-lg-12 col-sm-10">
-          <h1 class="artikel-blog">Perbedaan Frontend & Backend
+          <h1 class="artikel-blog">{{ $item->title }}
             <br>
-            <span>Tahukah kamu perbedaan front end dan back end ?</span>
+          <span>{{ $item->title_content }}</span>
           </h1>
-          <span class="penulis-header">Ditulis oleh <a href=""> Wawan Setiawan </a>,Tangerang 10 Oktober 2020.
+          <span class="penulis-header">Ditulis oleh <a href=""> {{ $item->writer }} </a>,{{$item->date_writer}}
             <br>
-            <span class="kategory font-italic">Kategori Technology</span>
+          <span class="kategory font-italic">Kategori {{ $item->category }}</span>
           </span>
-        </div>
+        </div> 
       </div>
     </div>
     <div class="costum-wave-artikel-blog">
@@ -58,49 +58,22 @@
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <div class="img-judul">
-            <img src="/frontend/images/img2.webp" alt="" class="img-fluid mb-2">
+            <img src="{{ Storage::url($item->galleries->first()->image) }}" alt="" class="img-fluid mb-2">
           </div>
           <div class="penulis">
-            <p>Ditulis oleh <a href=""> Wawan Setiawan </a> Tangerang 10 Oktober 2020 </p>
+            <p>Ditulis oleh<a href=""> {{$item->writer}}  </a> Tangerang, {{$item->date_writer}}  </p>
           </div>
           <div class="isi-kontent">
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident placeat nisi necessitatibus alias
-              reiciendis porro esse debitis. Expedita dolorum doloribus mollitia corporis accusamus sunt amet tempora
-              maxime optio? Maiores, laudantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-              repellat placeat cum quo amet maiores eos ratione cupiditate voluptatem aliquam, repudiandae nisi unde
-              exercitationem nesciunt. Ut sapiente facilis doloremque maxime.</p>
-            <div class="img-thumb text-center">
-              <img src="/frontend/images/img4.webp" class="w-75 mt-4 mb-3 rounded  img-fluid" alt="">
+          <p> {{ $item->content_title }}</p>
+            <div class="img-thumb text-center mt-5">
+              @foreach ($item->galleries as $key => $img)
+                @if ($key !=0)   
+                  <img src="{{ Storage::url($img->image) }}" class="w-75 mt-4 mb-3 rounded  img-fluid" alt="">
+                @endif
+              @endforeach
             </div>
-            <h2>FrontEnd</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium corrupti reiciendis modi possimus
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure dolor ipsam eius molestiae veniam deleniti
-              voluptatem itaque. Iure commodi magni ullam, ex aperiam temporibus at sint aliquid, consequuntur obcaecati
-              nemo blanditiis similique. Ut sed architecto corporis, placeat vel cum similique iste eaque omnis eveniet
-              quia voluptas, accusantium nobis et ex veniam optio. Distinctio eveniet eius totam quos? Beatae officiis
-              ea harum ducimus, explicabo sapiente temporibus! Quae, repudiandae? Deserunt, facere obcaecati. Odit
-              quibusdam soluta inventore nulla expedita cupiditate autem laborum architecto nemo a quam est vero
-              repellendus maiores officiis ut illo nihil sed eaque, earum harum? Est, ad tempora suscipit aliquam cum
-              explicabo, nemo mollitia ullam consequuntur vel nulla nihil minus voluptatibus. Dolorem quod aliquid
-              obcaecati vero similique magnam accusamus error, nostrum beatae amet voluptatem atque possimus perferendis
-              culpa dicta, sequi tenetur doloribus reiciendis, soluta nostrum repellat aliquam
-              impedit ipsum sit.
-              adipisci quae rerum, quaerat magni nostrum itaque quia quos neque harum veritatis autem blanditiis
-              laboriosam animi laborum.</p> <br>
-            <h2>Backend</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore illum magnam voluptatum perspiciatis,
-              sint
-              minima at hic, veritatis asperiores libero blanditiis, aperiam laboriosam! Labore, vel? Accusamus corrupti
-              ratione sunt at. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui fuga corrupti natus autem
-              cupiditate assumenda quos aliquam maxime temporibus voluptates nulla dolore vero numquam impedit, amet
-              tempora ratione, quibusdam illo! Lorem, ipsum dolor. Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Laboriosam sed, in libero ex nisilabore voluptatibus placeat alias animi, culpa eaque libero
-              recusandae incidunt tempora numquam! Impedit repellat dolore nam repellendus esse commodi facere
-              necessitatibus nostrum reprehenderit, fugiat corporis optio dignissimos recusandae eveniet exercitationem
-              voluptas voluptatum porro dicta culpa quidem illo voluptate cum. Provident iure soluta veniam quas
-              architecto in sunt saepe qui magni temporibus doloremque facere quibusdam, aliquid consequatur illum
-              possimus omnis maxime veritatis delectus amet sit dolorum blanditiis? Ab rem aliquam a esse neque eaque
-              nesciunt itaque cum.</p>
+          <h3 class="mt-3 mb-5">{{ $item->title }}</h3>
+            {{ $item->content }}
           </div>
         </div>
         <div class="col-lg-4">
@@ -110,33 +83,21 @@
                 <h5>Tentang Penulis</h5>
               <img src="{{ url('/frontend/images/2019-04-23 06.19.29 1.jpg') }}" alt=""
                   class="img-fluid float-left mt-2 mr-3 img-thumbnail rounded" width="130px">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quo voluptates quaerat quae fuga?
-                  Impedit corrupti, dolorem voluptatum, quo reiciendis numquam suscipit reprehenderit, aperiam quia qui
-                  eius inventore doloremque minus.</p>
+              <p>{{ $item->about_writer }}</p>
               </div>
             </div>
             <div class="card artikel-terkait">
               <div class="card-body">
                 <h4>Artikel Terkait</h4>
               </div>
-              <div class="card-body body-card">
-                <a href="" class="mt-3">
-                <img src="{{ url('/frontend/images/img3.webp') }}" alt="" class="rounded float-left img-fluid mr-2" width="120px">
-                  <h5>Memahami Dasar Pemrograman</h5>
-                </a>
-              </div>
-              <div class="card-body body-card">
-                <a href="" class="mt-3">
-                <img src="{{ url('/frontend/images/img1.webp') }}" alt="" class="rounded float-left img-fluid mr-2" width="120px">
-                  <h5>Recomendasi Laptop Untuk Ngoding</h5>
-                </a>
-              </div>
-              <div class="card-body mb-3 body-card">
-                <a href="" class="mt-3">
-                <img src="{{ url('/frontend/images/img4.webp') }}" alt="" class="rounded float-left img-fluid mr-2" width="120px">
-                  <h5>Keyboard Mechanical Untuk Ngoding</h5>
-                </a>
-              </div>
+                @foreach ($artikels as $artikel)
+                  <div class="card-body body-card">
+                  <a href="{{ url('artikel', $artikel->slug) }}" class="mb-2">
+                    <img src="{{($artikel->galleries->count() ? Storage::url( $artikel->galleries->first()->image) : '' )}}" alt="" class="rounded float-left img-fluid mr-2" width="120px">
+                    <h5>{{ $artikel->title }}</h5>
+                    </a>
+                  </div>
+                @endforeach
             </div>
             <div class="popular-artikel">
               <div class="card">

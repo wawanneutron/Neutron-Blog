@@ -76,90 +76,28 @@
       </div>
       <div class="container">
         <div class="row mb-5 row-content justify-content-center">
-          <div class="col-12 col-lg-4">
-            <a href="{{ url('/artikel') }}" class="card card-blog mb-5">
-            <img src="{{ url('/frontend/images/img3.webp') }}" alt="" width="100%" class="mb-4">
-              <div class="card-body m-3 pt-0">
-                <h3 class="card-title text-dark"> Perbedaan Frontend & Backend</h3>
-                <p class="card-text text-black-50">Front end developer dan back end developer memegang peranan penting di
-                  sebuah situs atau aplikasi. Pertanyaannya, tahukah kamu perbedaan front end dan back end?</p>
-              </div>
-              <div class="row text-dark">
-                <div class="col-lg-6">
-                  <i class="far fa-user float-left mr-2 mt-1"></i>
-                  <P> Neutron</P>
-                </div>
-                <div class="col-lg-6 ">
-                  <i class="fas fa-tags float-left mr-2 mt-1"></i>
-                  <p> Coding</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-12 col-lg-4">
-            <a href="{{ url('/artikel') }}" class="card card-blog mb-5">
-            <img src="{{ url('/frontend/images/img1.webp') }}" alt="" width="100%" class="mb-4">
-              <div class="card-body m-3 pt-0">
-                <h3 class="card-title text-dark"> Recomendasi Laptop Untuk Ngoding</h3>
-                <p class="card-text text-black-50">Sebenarnya tak ada sebutan khusus untuk merujuk sebuah laptop untuk
-                  keperluan programming.Hampir semua jenis laptop bisa digunakan untuk programming, mau itu laptop harga 4
-                  jutaan, laptop gaming murah, ataupun deretan laptop yang mahal sekalipun.</p>
-              </div>
-              <div class="row text-dark">
-                <div class="col-lg-6">
-                  <i class="far fa-user float-left mr-2 mt-1"></i>
-                  <P> Neutron</P>
-                </div>
-                <div class="col-lg-6 ">
-                  <i class="fas fa-tags float-left mr-2 mt-1"></i>
-                  <p> Technology</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-12 col-lg-4">
-            <a href="{{ url('/artikel') }}" class="card card-blog mb-5">
-            <img src="{{ url('/frontend/images/img2.webp') }}" alt="" width="100%" class="mb-4">
-              <div class="card-body m-3 pt-0">
-                <h3 class="card-title text-dark"> Memahami Dasar Pemrograman</h3>
-                <p class="card-text text-black-50">Bahasa pemrograman memiliki tugas untuk menghubungkan pengguna dengan
-                  mesin komputer karena dia bisa menerjemahkan perintah yang dimengerti oleh komputer. </p>
-              </div>
-              <div class="row text-dark">
-                <div class="col-lg-6">
-                  <i class="far fa-user float-left mr-2 mt-1"></i>
-                  <P> Neutron</P>
-                </div>
-                <div class="col-lg-6 ">
-                  <i class="fas fa-tags float-left mr-2 mt-1"></i>
-                  <p> Coding</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-12 col-lg-4">
-          <a href="{{ url('/artikel') }}" class="card card-blog mb-5">
-            <img src="{{ url('/frontend/images/img4.webp') }}" alt="" width="100%" class="mb-4">
-              <div class="card-body m-3 pt-0">
-                <h3 class="card-title text-dark"> Keyboard Mechanical Untuk Ngoding</h3>
-                <p class="card-text text-black-50">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit
-                  corrupti accusamus
-                  ullam velit aperiam molestiae omnis? Quaerat rem nemo maxime.</p>
-              </div>
-              <div class="row text-dark">
-                <div class="col-lg-6">
-                  <i class="far fa-user float-left mr-2 mt-1"></i>
-                  <P> Neutron</P>
-                </div>
-                <div class="col-lg-6 ">
-                  <i class="fas fa-tags float-left mr-2 mt-1"></i>
-                  <p> Technology</p>
-                </div>
-              </div>
-            </a>
-          </div>
+          @foreach ($items as $item)
+            <div class="col-12 col-lg-4">
+              <a href="{{ url('artikel', $item->slug) }}" class="card card-blog mb-5">
+                <img src="{{($item->galleries->count() ? Storage::url( $item->galleries->first()->image) : '' )}}" alt="" width="100%" class="mb-4">
+                  <div class="card-body ml-3 pt-0">
+                  <h3 class="card-title text-dark">{{ $item->title }}</h3>
+                  <p class="card-text text-black-50 ">{{ $item->content }}</p>
+                  </div>
+                  <div class="row text-dark">
+                    <div class="col-lg-7">
+                      <i class="far fa-user float-left mr-2 mt-1"></i>
+                    <P>{{ $item->writer }}</P>
+                    </div>
+                    <div class="col-lg-5 ">
+                      <i class="fas fa-tags float-left mr-2 mt-1"></i>
+                    <p>{{ $item->category }}</p>
+                    </div>
+                  </div>
+              </a>
+            </div>
+          @endforeach
         </div>
-      </div>
     </section>
 @endsection
 

@@ -40,32 +40,91 @@
       </form>
       <!-- desktop ButtonLogin -->
       <form action="#" class="form-inline my-2 my-lg-0 d-none d-lg-block">
-        @csrf
-      <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4" type="button" onclick="event.preventDefault(); location.href='{{ url('login') }}';">
-          Login
-        </button>
-      </form>
-      <!-- end navbar -->
+      @csrf
+          <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4" type="button" onclick="event.preventDefault(); location.href='{{ url('login') }}';">
+              Login
+            </button>
+          </form>
+          <!-- end navbar -->
       @endguest
 
       @auth
-          <!-- mobile ButtonLogin -->
-    <form action="{{ url('logout') }}" class="form-inline d-sm-block d-lg-none"  method="POST">
-        @csrf
-        <div class="container col-10">
-        <button class="btn btn-block btn-login-mobile my-2 my-sm-0" type="submit">
-            Logout
-          </button>
+     <!-- mobile ButtonLogin -->
+      <li class="nav-item dropdown no-arrow text-decoration-none list-unstyled d-sm-block d-lg-none">
+        <a class="nav-link" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img class="img-profile  rounded-circle" src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" style="width: 50px !important;">
+        </a>
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+          <i class="far fa-user fa-1x text-gray-600 mr-2 ml-3"></i> <span class="user-header">{{ Auth::user()->username }}
+          <hr>
+          @if (Auth::user() && Auth::user()->roles == 'ADMIN')
+            <a href="{{ route('content-package.index') }}" class="dropdown-item">
+              <i class="fas fa-plus fa-1x text-gray-600" style="margin-left: -7px;"></i>
+              <span class="ml-2">Add Content</span>
+            </a>
+            <hr>
+            <a href="{{ route('account-setting.index') }}" class="dropdown-item">
+              <i class="fas fa fa-pencil-alt fa-1x text-gray-600" style="margin-left: -7px;"></i>
+              <span class="ml-2">Setting Profile</span>
+            </a>
+          @else
+          <a href="{{ route('profile') }}" class="dropdown-item">
+              <i class="fas fa fa-pencil-alt fa-1x text-gray-600" style="margin-left: -7px;"></i>
+              <span class="ml-2">Setting Profile</span>
+            </a>
+          @endif
+          <div class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+            <hr>
+            <form action="{{ url('logout') }}" class="form-inline my-2 my-lg-0 d-sm-block d-lg-none"  method="POST">
+              @csrf
+              <button class="btn btn-block btn-login-mobile my-2 my-sm-0" type="submit">
+                Logout
+              </button>
+            </form>
+          </div>
         </div>
-      </form>
-      <!-- desktop ButtonLogin -->
-      <form action="{{ url('logout') }}" class="form-inline my-2 my-lg-0 d-none d-lg-block"  method="POST">
-        @csrf
-      <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4" type="submit">
-          Logout
-        </button>
-      </form>
-      <!-- end navbar -->
+      </li>
+     <!-- desktop ButtonLogin -->
+      <li class="nav-item dropdown no-arrow text-decoration-none list-unstyled d-none d-lg-block ">
+          <a class="nav-link" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="mr-2 d-none d-lg-inline text-gray-700">
+              {{ Auth::user()->name }}
+            </span>
+          
+            <img class="img-profile  rounded-circle" src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" style="width: 50px !important;">
+          </a>
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+          <i class="far fa-user fa-1x text-gray-600 mr-2 ml-3"></i> <span class="user-header">{{ Auth::user()->username }}
+          <hr>
+          @if (Auth::user() && Auth::user()->roles == 'ADMIN')
+            <a href="{{ route('content-package.index') }}" class="dropdown-item">
+              <i class="fas fa-plus fa-1x text-gray-600" style="margin-left: -7px;"></i>
+              <span class="ml-2">Add Content</span>
+            </a>
+            <hr>
+            <a href="{{ route('account-setting.index') }}" class="dropdown-item">
+              <i class="fas fa fa-pencil-alt fa-1x text-gray-600" style="margin-left: -7px;"></i>
+              <span class="ml-2">Setting Profile</span>
+            </a>
+          @else
+          <a href="{{ route('profile') }}" class="dropdown-item">
+              <i class="fas fa fa-pencil-alt fa-1x text-gray-600" style="margin-left: -7px;"></i>
+              <span class="ml-2">Setting Profile</span>
+            </a>
+          @endif
+          <div class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+            <hr>
+            <form action="{{ url('logout') }}" class="form-inline my-2 my-lg-0 d-none d-lg-block"  method="POST">
+              @csrf
+                <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4" type="submit">
+                    Logout
+                </button>
+            </form>
+          </div>
+        </div>
+      </li>
       @endauth
 
     </div>

@@ -19,75 +19,49 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Paket Travel</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Content</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $content_package }}</div>
               </div>
               <div class="col-auto">
-                <i class="fas fa-luggage-cart fa-2x text-gray-300"></i>
+                <i class="fas fa-calculator fa-2x text-gray-300"></i>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Earnings (Monthly) Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Transaksi</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Earnings (Monthly) Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pending</div>
-                <div class="row no-gutters align-items-center">
-                  <div class="col-auto">
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">10</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-spinner fa-2x text-gray-300"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pending Requests Card Example -->
       <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Sukses</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">how many is create By<br> <span class="text-secondary"> Wawan Setiawan </span></div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $writer_admin_one }}</div>
               </div>
               <div class="col-auto">
-                <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+                <i class="fas fa fa-pencil-alt fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">how many is create By <br> <span class="text-secondary"> Arif Kurniawan  </span></div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $writer_admin_two }}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa fa-pencil-alt fa-2x text-gray-300"></i>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
-
   </div>
 
 @endsection
