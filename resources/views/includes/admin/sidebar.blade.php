@@ -16,9 +16,9 @@
       
       {{-- Dashboard --}}
       <li class="nav-item">
-          <a class="nav-link" href="{{ route('dashboard') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+        <a class="nav-link" href="{{ route('dashboard') }}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
       </li>
 
 
@@ -33,8 +33,8 @@
       {{-- paket travel --}}
       <li class="nav-item">
       <a class="nav-link" href="{{ route('content-package.index') }}">
-            <i class="fas fa-fw fa-luggage-cart"></i>
-            <span>Content</span></a>
+          <i class="fas fa-fw fa-luggage-cart"></i>
+          <span>Content</span></a>
       </li>
                
               
@@ -49,8 +49,8 @@
       {{-- galeri travel --}}
       <li class="nav-item">
       <a class="nav-link" href="{{ route('gallery.index') }}">
-            <i class="fas fa-fw fa-images"></i>
-            <span>Galery Content</span></a>
+          <i class="fas fa-fw fa-images"></i>
+          <span>Galery Content</span></a>
       </li>
        <!-- Divider -->
        <hr class="sidebar-divider mt-5">
@@ -58,14 +58,14 @@
         Account Setting
       </div>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('account-setting.index') }}">
-              <i class="fas fa-fw fa-images"></i>
-              <span>Account Admin</span></a>
+        <a class="nav-link" href="{{ route('update-profile.index') }}">
+            <i class="fas fa-user-lock"></i>
+            <span>Account Setting</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('gallery.index') }}">
-                <i class="fas fa-fw fa-images"></i>
-                <span>Manage Account Users</span></a>
+          <a class="nav-link" href="{{ route('rolles.index') }}">
+            <i class="fas fa-users-cog"></i>
+            <span>Manage Account Users</span></a>
           </li>
 
       <!-- Sidebar Toggler (Sidebar) -->

@@ -3,24 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ContentPackageRequest;
-use App\Http\Requests\Admin\ContentPackageUpdateRequest;
-use App\ContentPackage;
+use App\Http\Requests\Admin\RolesRequest;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ContentPackageController extends Controller
+class ManagesRollesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = ContentPackage::all()->sortDesc();
+        $items = User::all();
 
-        return view('pages.admin.content-package.index', [
+        return view('pages.admin.account.manage-rolles', [
             'items' => $items
         ]);
     }
@@ -32,7 +31,7 @@ class ContentPackageController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.content-package.create');
+        //
     }
 
     /**
@@ -41,14 +40,9 @@ class ContentPackageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContentPackageRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->title);
-
-        ContentPackage::create($data);
-
-        return redirect()->route('content-package.index')->with(['success-add' => 'Aded conent is succesfully.']);
+        //
     }
 
     /**
@@ -70,9 +64,9 @@ class ContentPackageController extends Controller
      */
     public function edit($id)
     {
-        $item = ContentPackage::findOrFail($id);
+        $item = User::findOrFail($id);
 
-        return view('pages.admin.content-package.edit', [
+        return view('pages.admin.account.manage-rolles', [
             'item' => $item
         ]);
     }
@@ -84,16 +78,14 @@ class ContentPackageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ContentPackageUpdateRequest $request, $id)
+    public function update(RolesRequest $request, $id)
     {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->title);
+        $item = User::findOrFail($id);
+        $item->roles = $request->roles;
 
-        $item = ContentPackage::findOrFail($id);
+        $item->update();
 
-        $item->update($data);
-
-        return redirect()->route('content-package.index')->with(['success-update' => 'Update content is successfully.']);
+        return redirect()->route('rolles.index')->with(['success' => 'Update roles account succesfully']);
     }
 
     /**
@@ -104,10 +96,6 @@ class ContentPackageController extends Controller
      */
     public function destroy($id)
     {
-        $item = ContentPackage::findOrFail($id);
-
-        $item->delete();
-
-        return redirect()->route('content-package.index')->with(['success-delete' => 'Deleted conent is succesfully.']);
+        //
     }
 }

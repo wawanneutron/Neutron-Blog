@@ -58,7 +58,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <div class="img-judul">
-            <img src="{{ Storage::url($item->galleries->first()->image) }}" alt="" class="img-fluid mb-2">
+            <img src="{{ ($item->galleries->count() ? Storage::url($item->galleries->first()->image) : '' ) }}" alt="" class="img-fluid mb-2">
           </div>
           <div class="penulis">
             <p>Ditulis oleh<a href=""> {{$item->writer}}  </a> Tangerang, {{$item->date_writer}}  </p>
@@ -73,7 +73,7 @@
               @endforeach
             </div>
           <h3 class="mt-3 mb-5">{{ $item->title }}</h3>
-            {{ $item->content }}
+            {!! $item->content !!}
           </div>
         </div>
         <div class="col-lg-4">

@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ContentPackageRequest extends FormRequest
+class ContentPackageUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +26,7 @@ class ContentPackageRequest extends FormRequest
     {
         // validasi
         return [
-            'title' => [
-                'required', 'max:255',
-                Rule::unique('content_packages', 'title')->ignore($this->post)
-            ],
-
+            'title' => 'required|max:255',
             'title_content' => 'required|max:255',
             'writer' => 'required|max:255',
             'date_writer' => 'required|date',

@@ -35,9 +35,10 @@ Route::prefix('admin')
             ->name('dashboard');
         Route::resource('content-package', 'ContentPackageController');
         Route::resource('gallery', 'GalleryController');
-        Route::resource('account-setting', 'AccountController');
-        Route::patch('account-setting', 'AccountController@update')
-            ->name('account-setting');
+        Route::resource('update-profile', 'AccountController');
+        Route::patch('update-account', 'AccountController@update')
+            ->name('update-account');
+        Route::resource('rolles', 'ManagesRollesController');
     });
 
 
@@ -47,11 +48,10 @@ Route::prefix('user-profile')
     ->namespace('User')
     ->middleware(['auth', 'user'])
     ->group(function () {
-        Route::get('/', 'DataUserController@index')
-            ->name('profile');
         Route::resource('edit-account', 'AcountUserController');
         Route::patch('edit-account', 'AcountUserController@update')
-            ->name('account.update');
+            ->name('account-update');
+        Route::resource('update-profile', 'AcountUserController');
     });
 
 Auth::routes(['verify' => true]);

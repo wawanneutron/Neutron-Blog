@@ -34,7 +34,6 @@
           <label for="image">Image</label>
           <input type="file" class="form-control" name="image" placeholder="Image">
         </div>
-
         <button type="submit" class="btn btn-primary btn-block mt-4 mb-3">Save</button>
       </form>
     </div>

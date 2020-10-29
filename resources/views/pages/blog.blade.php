@@ -82,7 +82,7 @@
                 <img src="{{($item->galleries->count() ? Storage::url( $item->galleries->first()->image) : '' )}}" alt="" width="100%" class="mb-4">
                   <div class="card-body ml-3 pt-0">
                   <h3 class="card-title text-dark">{{ $item->title }}</h3>
-                  <p class="card-text text-black-50 ">{{ $item->content }}</p>
+                  <p class="card-text text-black-50">{!! $item->content !!}</p>
                   </div>
                   <div class="row text-dark">
                     <div class="col-lg-7">

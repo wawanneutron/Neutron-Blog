@@ -74,12 +74,7 @@
 
         <div class="form-group">
           <label for="content">Content</label>
-          <textarea name="content" id="content" cols="30" rows="10" class="d-block form-control @error ('content') is-invalid @enderror">{{ old ('content') }}</textarea>
-          @error('content')
-          <span class="invalid-feedback" role="alert">
-            <strong> {{ $message }} </strong>
-          </span>
-          @enderror
+          <textarea name="content" id="About" rows="10" class="d-block w-100 form-control">{{ old('content') }}</textarea>
         </div>
 
         <div class="form-group">

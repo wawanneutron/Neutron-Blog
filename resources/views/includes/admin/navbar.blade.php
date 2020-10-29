@@ -8,14 +8,19 @@
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
+              
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                     {{ Auth::user()->name }}
                   </span>
-                  
-                <img class="img-profile rounded-circle" src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}">
+                  @if (!Auth::user()->profile_image)
+                  <img class="img-profile rounded-circle" src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}">
+                      
+                  @else
+                  <img src="{{ Storage::url(Auth::user()->profile_image) }}" class="img-profile rounded-circle" style="" alt="">
+                  @endif
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -25,9 +30,9 @@
                     Logout
                   </a>
                  <hr>
-                 <a href="{{ route('home') }}" class="dropdown-item">
+                 <a href="{{ route('blog') }}" class="dropdown-item">
                     <i class="fas fa-home text-gray-600 mr-2"></i>
-                    back to home 
+                    back to blog 
                  </a>
                 </div>
               </li>

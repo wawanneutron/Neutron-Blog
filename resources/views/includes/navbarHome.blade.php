@@ -52,7 +52,9 @@
      <!-- mobile ButtonLogin -->
       <li class="nav-item dropdown no-arrow text-decoration-none list-unstyled d-sm-block d-lg-none">
         <a class="nav-link" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img class="img-profile  rounded-circle" src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" style="width: 50px !important;">
+          {{-- <img class="img-profile  rounded-circle" src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" style="width: 50px !important;"> --}}
+          <img src="{{ Storage::url(Auth::user()->profile_image) }}" class="img-profile rounded-circle" style="width: 60px !important; height: 60px !important;  -webkit-box-shadow: 5px 6px 12px -7px rgba(0,0,0,0.89); 
+          box-shadow: 5px 6px 12px -7px rgba(0,0,0,0.89);" alt="">
         </a>
         <!-- Dropdown - User Information -->
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -64,13 +66,13 @@
               <span class="ml-2">Add Content</span>
             </a>
             <hr>
-            <a href="{{ route('account-setting.index') }}" class="dropdown-item">
-              <i class="fas fa fa-pencil-alt fa-1x text-gray-600" style="margin-left: -7px;"></i>
+            <a href="{{ route('update-profile.index') }}" class="dropdown-item">
+              <i class="fas fa-user-lock fa-1x text-gray-600" style="margin-left: -7px;"></i>
               <span class="ml-2">Setting Profile</span>
             </a>
           @else
-          <a href="{{ route('profile') }}" class="dropdown-item">
-              <i class="fas fa fa-pencil-alt fa-1x text-gray-600" style="margin-left: -7px;"></i>
+          <a href="{{ route('edit-account.index') }}" class="dropdown-item">
+            <i class="fas fa-user-lock fa-1x text-gray-600" style="margin-left: -7px;"></i>
               <span class="ml-2">Setting Profile</span>
             </a>
           @endif
@@ -92,7 +94,13 @@
               {{ Auth::user()->name }}
             </span>
           
+            @if ( !Auth::user()->profile_image )
             <img class="img-profile  rounded-circle" src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" style="width: 50px !important;">
+            @else
+            <img src="{{ Storage::url(Auth::user()->profile_image) }}" class="img-profile rounded-circle" style="width: 50px !important; height: 50px !important;  -webkit-box-shadow: 5px 6px 12px -7px rgba(0,0,0,0.89); 
+            box-shadow: 5px 6px 12px -7px rgba(0,0,0,0.89);" alt="">
+            @endif
+            
           </a>
         <!-- Dropdown - User Information -->
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -104,13 +112,13 @@
               <span class="ml-2">Add Content</span>
             </a>
             <hr>
-            <a href="{{ route('account-setting.index') }}" class="dropdown-item">
-              <i class="fas fa fa-pencil-alt fa-1x text-gray-600" style="margin-left: -7px;"></i>
+            <a href="{{ route('update-profile.index') }}" class="dropdown-item">
+              <i class="fas fa-user-lock fa-1x text-gray-600" style="margin-left: -7px;"></i>
               <span class="ml-2">Setting Profile</span>
             </a>
           @else
-          <a href="{{ route('profile') }}" class="dropdown-item">
-              <i class="fas fa fa-pencil-alt fa-1x text-gray-600" style="margin-left: -7px;"></i>
+          <a href="{{ route('edit-account.index') }}" class="dropdown-item">
+              <i class="fas fa-user-lock fa-1x text-gray-600" style="margin-left: -7px;"></i>
               <span class="ml-2">Setting Profile</span>
             </a>
           @endif

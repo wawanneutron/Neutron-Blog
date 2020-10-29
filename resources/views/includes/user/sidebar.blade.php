@@ -2,31 +2,26 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('profile') }}">
-      <div class="sidebar-brand-text mx-3 mt-5">
-        <img class="img-profile rounded-circle" src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" style="width: 100px !important;">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('edit-account.index') }}">
+    <div class="sidebar-brand-text mx-3 mt-5">
       </div>             
     </a>
      
-      <!-- Divider -->
-      <hr class="sidebar-divider mt-5">
-    
-      {{-- Dashboard --}}
-      <li class="nav-item">
+     <!-- Divider -->
+     <hr class="sidebar-divider mt-5">
+     <div class="sidebar-heading">
+      Account Setting
+    </div>
+    <li class="nav-item">
       <a class="nav-link" href="{{ route('edit-account.index') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Edit Account</span></a>
+          <i class="fas fa-user-lock"></i>
+          <span>Account Setting</span></a>
       </li>
-
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-      {{-- paket travel --}}
       <li class="nav-item">
-      <a class="nav-link" href="">
-            <i class="fas fa-fw fa-luggage-cart"></i>
-            <span>Edit Profile</span></a>
-      </li>
+        <a class="nav-link" href="">
+          <i class="fas fa-users-cog"></i>
+          <span>Add adress</span></a>
+        </li>
                
               
       <!-- Divider -->

@@ -5,6 +5,35 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
+  <div class="row">
+    <div class="col-lg-6">
+      @if (session('success-add'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Hola {{ Auth::user()->username }}</strong>
+            {{ session('success-add') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @elseif(session('success-update'))
+      <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <strong>Hola {{ Auth::user()->username }}</strong>
+          {{ session('success-update') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      @elseif(session('success-delete'))
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Hola {{ Auth::user()->username }}</strong>
+          {{ session('success-delete') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      @endif
+    </div>
+  </div>
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 mt-3 text-gray-800">Content Management System</h1>
     <a href="{{ route('gallery.create') }}" class="btn btn-sm btn-primary shadow-sm mt-3">
@@ -27,6 +56,7 @@
           <tbody>
             @forelse ($items as $item)
             <tr>
+            <td class="align-middle">{{ $item->id }}</td>
               <td class="align-middle"> {{ ($item->content_package->title) }}  </td>
               <td class="align-middle"> 
               <img src="{{ Storage::url($item->image) }}" alt="" class="" width="160px">  
@@ -35,37 +65,37 @@
                 <a href="{{ route ('gallery.edit', $item->id) }}" class="btn btn-info m-2">
                   <i class="fa fa-pencil-alt"></i>
                 </a>
-                <form action="{{ route ('gallery.destroy', $item->id) }}" class="d-inline m-2" method="POST">
-                  @csrf
-                  @method('delete')
-                  <button class="btn btn-danger"> Delete
-                    <i class="fas fa-trash"></i>
+                <button class="btn btn-danger" data-toggle="modal" data-target="#deleteGallery{{ $item->id }}">
+                  <i class="fas fa-trash"></i>
+              </button>
+                
+              {{-- modal delete --}}
+          <div class="modal fade" id="deleteGallery{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteGallery" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Management Content</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                   </button>
-                </form>
-                   <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-trash"></i>
-                  </button>
-
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle">Gallery Content</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          Do you wont to delete this image ?
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          
-                        </div>
-                      </div>
-                    </div>
-                  </div>  
+                </div>
+                <div class="modal-body">
+                  Do you wont to delete <br> <span class=" font-weight-bold">{{$item->content_package->title}}</span> ?
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <form action="{{ route ('gallery.destroy', $item->id) }}" class="d-inline m-2" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger">
+                      Delete Gallery
+                    </button>
+                  </form> 
+                </div>
+              </div>
+            </div>
+          </div> 
               </td>
             </tr>
             @empty
@@ -80,7 +110,6 @@
       </div>
     </div>
   </div>
-
 
 
 

@@ -17,7 +17,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $items = Gallery::with(['content_package'])->get();
+        $items = Gallery::with(['content_package'])->get()->sortDesc();
 
         return view('pages.admin.gallery.index', [
             'items' => $items
@@ -52,7 +52,7 @@ class GalleryController extends Controller
 
         Gallery::create($data);
 
-        return redirect()->route('gallery.index');
+        return redirect()->route('gallery.index')->with(['success-add' => 'Add image content is successfully']);
     }
 
     /**
@@ -101,7 +101,7 @@ class GalleryController extends Controller
 
         $item->update($data);
 
-        return redirect()->route('gallery.index');
+        return redirect()->route('gallery.index')->with(['success-update' => 'Update image is successfully']);
     }
 
     /**
@@ -116,6 +116,6 @@ class GalleryController extends Controller
 
         $item->delete();
 
-        return redirect()->route('gallery.index');
+        return redirect()->route('gallery.index')->with(['success-delete' => 'Delete image is succesfully']);
     }
 }
