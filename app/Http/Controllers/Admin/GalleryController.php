@@ -7,6 +7,7 @@ use App\Gallery;
 use App\Http\Requests\Admin\GalleryRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GalleryController extends Controller
 {
@@ -17,10 +18,14 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $items = Gallery::with(['content_package'])->get()->sortDesc();
+
+        // $galleries = Gallery::with(['content_package'])->Paginate(3);
+        $items = Gallery::with(['content_package'])
+            ->orderBy('id', 'desc')
+            ->paginate(3);
 
         return view('pages.admin.gallery.index', [
-            'items' => $items
+            'items' => $items,
         ]);
     }
 

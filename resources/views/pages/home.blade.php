@@ -4,6 +4,7 @@
     
 @section('content')
 
+
     <!-- header -->
     <main class="header">
       <div class="bg-home"></div>

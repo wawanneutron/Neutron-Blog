@@ -6,12 +6,10 @@
   <!-- share -->
   <div class="share text-center font-weight-light">
     <p>Share</p>
-    <a href="javaScript:;">
-      <li class="list-unstyled"><img src="{{ url ('/frontend/images/wa.png') }}" alt=""></li>
-      <li class="list-unstyled"><img src="{{ url ('/frontend/images/go.png') }}" alt=""></li>
-      <li class="list-unstyled"><img src="{{ url ('/frontend/images/fb.png') }}" alt=""></li>
-      <li class="list-unstyled"><img src="{{ url ('/frontend/images/ig.png') }}" alt=""></li>
-    </a>
+      <a href=""><li class="list-unstyled"><img src="{{ url ('/frontend/images/wa.png') }}" alt=""></li></a>
+      <a href=""><li class="list-unstyled"><img src="{{ url ('/frontend/images/go.png') }}" alt=""></li></a>
+      <a href=""><li class="list-unstyled"><img src="{{ url ('/frontend/images/fb.png') }}" alt=""></li></a>
+      <a href=""><li class="list-unstyled"><img src="{{ url ('/frontend/images/ig.png') }}" alt=""></li></a>
   </div>
      <!-- header -->
   <main class="header">
@@ -86,18 +84,19 @@
               <p>{{ $item->about_writer }}</p>
               </div>
             </div>
-            <div class="card artikel-terkait">
+            <div class="card artikel-terkait overflow-auto">
               <div class="card-body">
                 <h4>Artikel Terkait</h4>
               </div>
-                @foreach ($artikels as $artikel)
-                  <div class="card-body body-card">
+                @foreach ($artikels as $artikel )
+                  <div class="card-body body-card" >
                   <a href="{{ url('artikel', $artikel->slug) }}" class="mb-2">
                     <img src="{{($artikel->galleries->count() ? Storage::url( $artikel->galleries->first()->image) : '' )}}" alt="" class="rounded float-left img-fluid mr-2" width="120px">
                     <h5>{{ $artikel->title }}</h5>
                     </a>
                   </div>
                 @endforeach
+                
             </div>
             <div class="popular-artikel">
               <div class="card">

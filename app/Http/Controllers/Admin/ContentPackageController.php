@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\ContentPackageUpdateRequest;
 use App\ContentPackage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class ContentPackageController extends Controller
 {
@@ -18,10 +19,12 @@ class ContentPackageController extends Controller
      */
     public function index()
     {
-        $items = ContentPackage::all()->sortDesc();
+        $items = ContentPackage::orderBy('id', 'desc')
+            ->paginate(3);
+
 
         return view('pages.admin.content-package.index', [
-            'items' => $items
+            'items' => $items,
         ]);
     }
 

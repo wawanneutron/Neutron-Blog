@@ -79,24 +79,86 @@
           @foreach ($items as $item)
             <div class="col-12 col-lg-4">
               <a href="{{ url('artikel', $item->slug) }}" class="card card-blog mb-5">
-                <img src="{{($item->galleries->count() ? Storage::url( $item->galleries->first()->image) : '' )}}" alt="" width="100%" class="mb-4">
+                <img src="{{($item->galleries->count() ? Storage::url( $item->galleries->first()->image) : '' )}}" alt="" width="100%" class="mb-2">
                   <div class="card-body ml-3 pt-0">
                   <h3 class="card-title text-dark">{{ $item->title }}</h3>
                   <p class="card-text text-black-50">{!! $item->content !!}</p>
                   </div>
                   <div class="row text-dark">
                     <div class="col-lg-7">
-                      <i class="far fa-user float-left mr-2 mt-1"></i>
-                    <P>{{ $item->writer }}</P>
+                      <i class="far fa-user float-left mr-2 mt-3"></i>
+                    <p class="mt-2">{{ $item->writer }}</p>
                     </div>
                     <div class="col-lg-5 ">
-                      <i class="fas fa-tags float-left mr-2 mt-1"></i>
-                    <p>{{ $item->category }}</p>
+                      <i class="fas fa-tags float-left mr-2 mt-3"></i>
+                    <p class="mt-2">{{ $item->category }}</p>
                     </div>
                   </div>
               </a>
             </div>
-          @endforeach
+            @endforeach
+            <div class=" fa-pull-right mt-4 d-flex col-lg-12 justify-content-center">
+              {{-- pagination-costom --}}
+              @if ($items->hasPages())
+                <ul class="pagination" role="navigation">
+                    {{-- Previous Page Link --}}
+                    @if ($items->onFirstPage())
+                        <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
+                            <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                        </li>
+                    @else
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $items->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">&lsaquo;</a>
+                        </li>
+                    @endif
+             
+                    <?php
+                        $start = $items->currentPage() - 1; // show 3 pagination links before current
+                        $end = $items->currentPage() + 1; // show 3 pagination links after current
+                        if($start < 1) {
+                            $start = 1; // reset start to 1
+                            $end += 1;
+                        } 
+                        if($end >= $items->lastPage() ) $end = $items->lastPage(); // reset end to last page
+                    ?>
+             
+                    @if($start > 1)
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $items->url(1) }}">{{1}}</a>
+                        </li>
+                        @if($items->currentPage() != 4)
+                            {{-- "Three Dots" Separator --}}
+                            <li class="page-item disabled" aria-disabled="true"><span class="page-link">...</span></li>
+                        @endif
+                    @endif
+                        @for ($i = $start; $i <= $end; $i++)
+                            <li class="page-item {{ ($items->currentPage() == $i) ? ' active' : '' }}">
+                                <a class="page-link" href="{{ $items->url($i) }}">{{$i}}</a>
+                            </li>
+                        @endfor
+                    @if($end < $items->lastPage())
+                        @if($items->currentPage() + 3 != $items->lastPage())
+                            {{-- "Three Dots" Separator --}}
+                            <li class="page-item disabled" aria-disabled="true"><span class="page-link">...</span></li>
+                        @endif
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $items->url($items->lastPage()) }}">{{$items->lastPage()}}</a>
+                        </li>
+                    @endif
+             
+                    {{-- Next Page Link --}}
+                    @if ($items->hasMorePages())
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $items->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">&rsaquo;</a>
+                        </li>
+                    @else
+                        <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
+                            <span class="page-link" aria-hidden="true">&rsaquo;</span>
+                        </li>
+                    @endif
+                </ul>
+              @endif
+            </div>
         </div>
     </section>
 @endsection

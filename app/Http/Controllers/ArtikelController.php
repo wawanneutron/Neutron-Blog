@@ -13,8 +13,10 @@ class ArtikelController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
-        $artikels = ContentPackage::with(['galleries'])->get();
-        
+        $artikels = ContentPackage::with(['galleries'])
+            ->orderBy('id', 'asc')
+            ->paginate(3);
+
         return view('pages.artikel', [
             'item' => $item,
             'artikels' => $artikels,

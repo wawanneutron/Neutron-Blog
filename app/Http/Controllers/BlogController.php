@@ -10,7 +10,9 @@ class BlogController extends Controller
     public function index(Request $request)
     {
 
-        $items = ContentPackage::with(['galleries'])->get();
+        $items = ContentPackage::with(['galleries'])
+            ->orderBy('id', 'desc')
+            ->paginate(3);
 
         return view('pages.blog', [
             'items' => $items

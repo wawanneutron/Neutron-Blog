@@ -51,7 +51,6 @@ Route::prefix('user-profile')
         Route::resource('edit-account', 'AcountUserController');
         Route::patch('edit-account', 'AcountUserController@update')
             ->name('account-update');
-        Route::resource('update-profile', 'AcountUserController');
     });
 
 Auth::routes(['verify' => true]);

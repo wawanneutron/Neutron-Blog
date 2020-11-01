@@ -52,7 +52,6 @@
      <!-- mobile ButtonLogin -->
       <li class="nav-item dropdown no-arrow text-decoration-none list-unstyled d-sm-block d-lg-none">
         <a class="nav-link" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{-- <img class="img-profile  rounded-circle" src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" style="width: 50px !important;"> --}}
           <img src="{{ Storage::url(Auth::user()->profile_image) }}" class="img-profile rounded-circle" style="width: 60px !important; height: 60px !important;  -webkit-box-shadow: 5px 6px 12px -7px rgba(0,0,0,0.89); 
           box-shadow: 5px 6px 12px -7px rgba(0,0,0,0.89);" alt="">
         </a>
@@ -78,12 +77,12 @@
           @endif
           <div class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
             <hr>
-            <form action="{{ url('logout') }}" class="form-inline my-2 my-lg-0 d-sm-block d-lg-none"  method="POST">
-              @csrf
-              <button class="btn btn-block btn-login-mobile my-2 my-sm-0" type="submit">
-                Logout
-              </button>
-            </form>
+            <div class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+            <hr>
+            <button class="btn btn-block btn-login-mobile my-2 my-sm-0" type="submit">
+              Logout
+            </button>
+          </div>
           </div>
         </div>
       </li>
@@ -91,7 +90,7 @@
       <li class="nav-item dropdown no-arrow text-decoration-none list-unstyled d-none d-lg-block ">
           <a class="nav-link" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="mr-2 d-none d-lg-inline text-gray-700">
-              {{ Auth::user()->name }}
+              {{-- {{ Auth::user()->name }} --}}
             </span>
           
             @if ( !Auth::user()->profile_image )
@@ -124,17 +123,39 @@
           @endif
           <div class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
             <hr>
-            <form action="{{ url('logout') }}" class="form-inline my-2 my-lg-0 d-none d-lg-block"  method="POST">
-              @csrf
-                <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4" type="submit">
-                    Logout
-                </button>
-            </form>
+            <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4" type="submit">
+                Logout
+            </button>
           </div>
         </div>
       </li>
       @endauth
-
     </div>
   </div>
 </div>
+
+
+   <!-- Logout Modal-->
+   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Logout </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        Do you wont to logout <br> <span class=" font-weight-bold"></span> ?
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url('logout') }}" class="d-inline m-2" method="POST">
+            @csrf
+            <button class="btn btn-danger" type="submit">Logout</button>
+          </form> 
+        </div>
+      </div>
+    </div>
+  </div>
